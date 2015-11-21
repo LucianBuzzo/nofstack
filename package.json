@@ -14,7 +14,17 @@
     "gulp-copy": "0.0.2"
   },
   "nofstack": {
-    "mainIn": "src/index.f95",
+    "mainIn": [
+      "src/index.f95",
+      "src/templates.f95"
+    ],
     "mainOut": "build/nof.out"
+  },
+  "eslintConfig": {
+    "env": {
+      "es6": true,
+      "browser": true,
+      "node": true
+    }
   }
 }

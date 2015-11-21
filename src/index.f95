@@ -1,8 +1,9 @@
 program echostd
+  use templates
   use, intrinsic :: iso_fortran_env, only: iostat_end
   implicit none
 
-  character(len=30) :: path = '/'
+  character(len=30) :: path
 
   character(len=30) :: file_name = 'build/templates/main.html'
 
@@ -13,9 +14,7 @@ program echostd
 
   print *, 'The path requested is ', path
 
-  if ( path == '/blog' ) then
-    file_name = 'build/templates/blog.html'
-  end if
+  file_name = get_template(path)
 
   open(newunit=lun, file=file_name, access='stream', status='old',  &
      action='read')
@@ -28,4 +27,6 @@ program echostd
   end do
 
   close(lun)
+
 end program echostd
+

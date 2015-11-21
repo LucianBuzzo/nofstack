@@ -1,7 +1,7 @@
 var gulp = require('gulp');
 var copy = require('gulp-copy');
 var exec = require('child_process').exec;
-var config = require('./package.json').nofstack;
+const config = require('./package.json').nofstack;
 
 function puts(error, stdout, stderr) {
   if ( error ) console.log(error);
@@ -10,10 +10,12 @@ function puts(error, stdout, stderr) {
 }
 
 function gfortranBuild(input, output) {
-  exec('gfortran src/index.f95 -o build/nof.out', puts);
+  const src = input.join(' ');
+  const tmp = output.split('/').slice(0, -1).join('/') + '/tmp.f95';
+  exec(`cat ${src} > ${tmp} && gfortran ${tmp} -o ${output} && rm ${tmp}`, puts);
 }
 
-gulp.task('default', function() {
+gulp.task('default', ()=> {
   gfortranBuild(config.mainIn, config.mainOut);
 
   return  gulp.src('./src/templates/*.html')
