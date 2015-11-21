@@ -15,7 +15,7 @@ function gfortranBuild(input, output) {
   exec(`cat ${src} > ${tmp} && gfortran ${tmp} -o ${output} && rm ${tmp}`, puts);
 }
 
-gulp.task('default', ()=> {
+gulp.task('default', () => {
   gfortranBuild(config.mainIn, config.mainOut);
 
   return  gulp.src('./src/templates/*.html')
@@ -23,6 +23,6 @@ gulp.task('default', ()=> {
 
 });
 
-gulp.task('watch', function() {
+gulp.task('watch', () => {
   gulp.watch('./src/*', ['default']);
 });

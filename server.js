@@ -1,13 +1,13 @@
 var http = require('http');
 var exec = require('child_process').exec;
-var config = require('./package.json').nofstack;
+const config = require('./package.json').nofstack;
 
-var main = './' + config.mainOut;
+const main = './' + config.mainOut;
 
-var PORT = 8080;
+const port = 8080;
 
 function handleRequest(request, response){
-  exec(main + ' ' + request.url, function(error, stdout, stderr) {
+  exec(main + ' ' + request.url, (error, stdout, stderr) => {
     response.setHeader('Content-Type', 'text/html');
     response.end(stdout);
   });
@@ -15,6 +15,6 @@ function handleRequest(request, response){
 
 var server = http.createServer(handleRequest);
 
-server.listen(PORT, function(){
-  console.log("Server listening on: http://localhost:%s", PORT);
+server.listen(port, () => {
+  console.log(`Server listening on: http://localhost:${port}`);
 });
