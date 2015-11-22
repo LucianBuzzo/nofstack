@@ -9,7 +9,11 @@ const port = 8080;
 function handleRequest(request, response){
   exec(main + ' ' + request.url, (error, stdout, stderr) => {
     response.setHeader('Content-Type', 'text/html');
-    response.end(stdout);
+
+    var output = stdout;
+    if ( error ) output = error;
+    if ( stderr ) output = stderr;
+    response.end(output);
   });
 }
 
