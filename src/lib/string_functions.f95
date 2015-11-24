@@ -97,14 +97,18 @@ END FUNCTION Reduce_Blanks
 ! ------------------
 FUNCTION Replace_Text (s,text,rep)  RESULT(outs)
 CHARACTER(*)        :: s,text,rep
-CHARACTER(LEN(s)+100) :: outs     ! provide outs with extra 100 char len
 INTEGER             :: i, nt, nr
+CHARACTER(:), allocatable :: outs     ! provide outs with extra 100 char len
+character (len=999999), allocatable :: tmp
 
-outs = s ; nt = LEN_TRIM(text) ; nr = LEN_TRIM(rep)
+tmp = s ; nt = LEN_TRIM(text) ; nr = LEN_TRIM(rep)
 DO
-   i = INDEX(outs,text(:nt)) ; IF (i == 0) EXIT
-   outs = outs(:i-1) // rep(:nr) // outs(i+nt:)
+   i = INDEX(tmp,text(:nt)) ; IF (i == 0) EXIT
+   tmp = tmp(:i-1) // rep(:nr) // tmp(i+nt:)
 END DO
+! Allocate here to prevent a segfault
+allocate(character (len=len_trim(tmp)):: outs)
+outs = trim(tmp)
 END FUNCTION Replace_Text
 
 ! ---------------------------------

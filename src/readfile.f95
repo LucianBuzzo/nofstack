@@ -5,7 +5,7 @@ contains
     use, intrinsic :: iso_fortran_env, only: iostat_end
     character (len=30) :: file_name
     character (len=99):: line
-    character (len=999), allocatable :: tmp
+    character (len=999999), allocatable :: tmp
     character (:), allocatable :: resp
     integer :: io_status, size
 
