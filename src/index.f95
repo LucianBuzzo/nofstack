@@ -12,6 +12,7 @@ program echostd
   character (:), allocatable :: response_text
   integer :: occurances, size
   character (len=30) :: line
+  type(menu_item) menu_struct(100)
 
   call getarg(1, path)
 
@@ -19,6 +20,7 @@ program echostd
   template = get_template_path(path)
 
   menu_struct = build_menu()
+  menu_markup = theme_menu(menu_struct)
 
   content_text = get_content(path)
 

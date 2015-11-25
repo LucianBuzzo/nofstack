@@ -12,7 +12,8 @@ function puts(error, stdout, stderr) {
 function gfortranBuild(input, output) {
   const src = input.join(' ');
   const tmp = output.split('/').slice(0, -1).join('/') + '/tmp.f95';
-  exec(`cat ${src} > ${tmp} && gfortran ${tmp} -o ${output} && rm ${tmp}`, puts);
+//  exec(`cat ${src} > ${tmp} && gfortran ${tmp} -o ${output} && rm ${tmp}`, puts);
+  exec('cat ' + src + ' > ' + tmp + ' && gfortran ' + tmp + ' -o ' + output + ' && rm ' + tmp, puts);
 }
 
 gulp.task('default', () => {
