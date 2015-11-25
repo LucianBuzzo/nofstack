@@ -16,6 +16,7 @@
   "nofstack": {
     "mainIn": [
       "src/lib/string_functions.f95",
+      "src/markdown.f95",
       "src/readfile.f95",
       "src/menu.f95",
       "src/content.f95",

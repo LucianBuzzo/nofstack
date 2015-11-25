@@ -1,2 +1,2 @@
-"My blog one"
-"Your blog two"
+My blog one
+My blog two
