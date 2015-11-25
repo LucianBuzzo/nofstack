@@ -1,4 +1,5 @@
-var http = require('http');
+var express = require('express');
+var app = express();
 var exec = require('child_process').exec;
 const config = require('./package.json').nofstack;
 
@@ -17,8 +18,12 @@ function handleRequest(request, response){
   });
 }
 
-var server = http.createServer(handleRequest);
+// Serve static content from the public folder if its available
+app.use(express.static('public'));
 
-server.listen(port, () => {
+// Wildcard routing so that the request can be handled correctly
+app.get(/^(.*)$/, handleRequest);
+
+var server = app.listen(port, () => {
   console.log(`Server listening on: http://localhost:${port}`);
 });

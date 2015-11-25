@@ -31,5 +31,8 @@
       "browser": true,
       "node": true
     }
+  },
+  "dependencies": {
+    "express": "^4.13.3"
   }
 }
