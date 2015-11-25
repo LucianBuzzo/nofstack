@@ -23,7 +23,7 @@ contains
     rewind(41)
     do i = 1,NstationFiles
       read(41,'(a)') menu(i)
-      if ( path .EQ. menu(i) ) then
+      if ( trim(path) == '/'//trim(menu(i)) ) then
         exists = .TRUE.
       endif
     end do
@@ -32,7 +32,7 @@ contains
     if ( exists ) then
       resp = path//' content has been found'
     else
-      resp = '404 page not found'
+      resp = '404 page not found: '//path
     end if
   end function
 end module content
