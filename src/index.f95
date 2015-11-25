@@ -18,7 +18,7 @@ program echostd
   response_text = read_file(file_name)
   template = get_template_path(path)
 
-  menu_markup = build_menu()
+  menu_struct = build_menu()
 
   content_text = get_content(path)
 
