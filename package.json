@@ -17,6 +17,8 @@
     "mainIn": [
       "src/lib/string_functions.f95",
       "src/readfile.f95",
+      "src/menu.f95",
+      "src/content.f95",
       "src/templates.f95",
       "src/index.f95"
     ],
