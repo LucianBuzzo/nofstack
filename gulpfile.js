@@ -11,9 +11,22 @@ function puts(error, stdout, stderr) {
 
 function gfortranBuild(input, output) {
   const src = input.join(' ');
-  const tmp = output.split('/').slice(0, -1).join('/') + '/tmp.f95';
-//  exec(`cat ${src} > ${tmp} && gfortran ${tmp} -o ${output} && rm ${tmp}`, puts);
-  exec('cat ' + src + ' > ' + tmp + ' && gfortran ' + tmp + ' -o ' + output + ' && rm ' + tmp, puts);
+  const tmp = output + '/tmp.f95';
+  const cmds = [
+    // cat the source files
+    `cat ${src}`,
+    // write the src files to a single tmp file
+    `> ${tmp}`,
+    // compile the tmp file
+    `&& gfortran ${tmp}`,
+    // specify the output dir for .mod file
+    `-J ${output}`,
+    // specify the output file for the compile executable
+    `-o ${output}/nof.out`,
+    // remove the tmp file
+    `&& rm ${tmp}`
+  ];
+  exec(cmds.join(' '), puts);
 }
 
 gulp.task('default', () => {

@@ -23,7 +23,7 @@
       "src/templates.f95",
       "src/index.f95"
     ],
-    "mainOut": "build/nof.out"
+    "mainOut": "build"
   },
   "eslintConfig": {
     "env": {
