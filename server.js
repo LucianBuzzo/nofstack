@@ -5,7 +5,7 @@ const config = require('./package.json').nofstack;
 
 const main = './' + config.mainOut;
 
-const port = 8080;
+const port = process.env.PORT || 8080;
 
 function handleRequest(request, response){
   exec(main + ' ' + request.url, (error, stdout, stderr) => {
