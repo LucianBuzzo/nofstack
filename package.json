@@ -4,9 +4,10 @@
   "description": "Fortran backed blogging engine",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "npm run test:syntax",
     "start": "node server.js",
-    "watch": "gulp build && gulp watch"
+    "watch": "gulp build && gulp watch",
+    "test:syntax": "node --check server.js && node --check gulpfile.js"
   },
   "author": "",
   "license": "ISC",
